@@ -1,0 +1,61 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "not_a_ws90": "That address answers Modbus, but the device is not a WS90",
+      "unknown": "Unexpected error"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "host": "Host",
+          "port": "Port",
+          "unit_id": "Unit ID"
+        },
+        "data_description": {
+          "host": "The WS90's hostname or IP address, or that of the gateway bridging it.",
+          "port": "The Modbus TCP port of the gateway. WS90 gateways typically use 502.",
+          "unit_id": "The WS90's Modbus device address, printed on the sensor as its factory default (0x90 / 144) unless changed."
+        },
+        "description": "Enter the address of your WS90's Modbus gateway. This is usually an RTU-over-TCP serial gateway, not the sensor speaking Modbus TCP natively."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "light": {
+        "name": "Light"
+      },
+      "uv_index": {
+        "name": "UV index"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "wind_speed": {
+        "name": "Wind speed"
+      },
+      "gust_speed": {
+        "name": "Gust speed"
+      },
+      "wind_direction": {
+        "name": "Wind direction"
+      },
+      "rainfall": {
+        "name": "Rainfall"
+      },
+      "absolute_pressure": {
+        "name": "Absolute pressure"
+      },
+      "rain_counter": {
+        "name": "Rain counter"
+      }
+    }
+  }
+}

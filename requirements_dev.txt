@@ -1,0 +1,7 @@
+-r requirements_lint.txt
+colorlog==6.10.1
+# 2026.9.0 is the first release carrying the shared Modbus connection API
+# (homeassistant.components.modbus.async_get_unit) this integration depends
+# on. Pinned to the latest available beta until that release goes stable --
+# bump this (and the homeassistant key in hacs.json) once it does.
+homeassistant==2026.9.0b6
