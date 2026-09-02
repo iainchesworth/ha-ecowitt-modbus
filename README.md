@@ -44,6 +44,10 @@ Ten sensor entities are created, all under one device: light, UV index, temperat
 
 The [`ecowitt-ws90-modbus`](https://github.com/iainchesworth/ecowitt-ws90-modbus) device library -- which knows nothing about Home Assistant and could be reused by any Python project -- is copied into `custom_components/ecowitt_ws90/vendor/` rather than installed from PyPI. This keeps the integration installable via HACS without waiting on a PyPI release; once the library has a stable release, a future version of this integration may switch to a normal `requirements` dependency instead.
 
+## Brand images
+
+The device and config-flow icon/logo (`custom_components/ecowitt_ws90/brand/`) are Ecowitt's own official brand assets, reused from the [existing `ecowitt` core integration's entry](https://github.com/home-assistant/brands/tree/master/core_integrations/ecowitt) in `home-assistant/brands`. Bundled directly per the [Brands Proxy API](https://developers.home-assistant.io/blog/2026/02/24/brands-proxy-api) (Home Assistant 2026.3.0+) rather than submitted to that repository -- it no longer accepts new custom-integration brand submissions.
+
 ## Requirements
 
 - Home Assistant 2026.9.0 or newer (or the current `dev`/beta build until that release ships stable) -- earlier releases don't have the shared Modbus connection API this integration depends on.
