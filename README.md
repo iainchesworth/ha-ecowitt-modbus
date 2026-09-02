@@ -52,3 +52,10 @@ The [`ecowitt-ws90-modbus`](https://github.com/iainchesworth/ecowitt-ws90-modbus
 ## Development
 
 Run `scripts/setup` once to install dependencies, `scripts/develop` to launch a local Home Assistant instance with this integration on the Python path, and `scripts/lint` to format and lint before committing. See [CONTRIBUTING.md](CONTRIBUTING.md) for more.
+
+## Related projects
+
+This is one of three repositories for WS90 support in Home Assistant:
+
+* [`ecowitt-ws90-modbus`](https://github.com/iainchesworth/ecowitt-ws90-modbus) -- the standalone device library this integration vendors.
+* [`ha-core-ws90`](https://github.com/iainchesworth/ha-core-ws90) -- a `home-assistant/core` fork adding the same integration as a built-in component (branch `ecowitt-ws90-integration`), for anyone who'd rather wait for it to ship in core than install a custom integration.
