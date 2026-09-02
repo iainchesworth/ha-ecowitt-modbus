@@ -9,4 +9,4 @@ homeassistant:
 logger:
   default: info
   logs:
-    custom_components.ecowitt_ws90: debug
+    custom_components.ecowitt_modbus: debug

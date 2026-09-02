@@ -7,5 +7,11 @@ if [[ ! -d "${PWD}/config" ]]; then
     hass --config "${PWD}/config" --script ensure_config
 fi
 
-export PYTHONPATH="${PYTHONPATH}:${PWD}/custom_components"
+# Home Assistant loads custom integrations from <config>/custom_components,
+# importing them as `custom_components.<domain>`. Link the directory in rather
+# than putting it on PYTHONPATH: this integration's package is named
+# `ecowitt_modbus`, the same as the library it depends on, so exposing it as a
+# top-level module would shadow the real dependency and fail at import.
+ln -sfn "${PWD}/custom_components" "${PWD}/config/custom_components"
+
 hass --config "${PWD}/config" --debug

@@ -1,5 +1,5 @@
 {
-    "name": "Ecowitt WS90",
+    "name": "Ecowitt Modbus",
     "homeassistant": "2026.9.0b0",
     "hacs": "2.0.5"
 }

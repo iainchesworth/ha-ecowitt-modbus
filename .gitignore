@@ -16,3 +16,9 @@ coverage.xml
 # Home Assistant configuration
 config/*
 !config/configuration.yaml
+
+
+# HACS installs itself here when it is added to a local instance started by
+# scripts/develop. Not part of this repository, and linting it is 1000+ errors
+# of noise.
+custom_components/hacs

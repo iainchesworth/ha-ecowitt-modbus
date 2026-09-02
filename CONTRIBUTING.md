@@ -22,7 +22,7 @@ installs this repository's Python dependencies, including a pinned Home Assistan
 scripts/develop
 ```
 
-launches a local Home Assistant instance with `custom_components/` on the Python path, so `ecowitt_ws90` loads as if it had been installed normally. Add it via **Settings -> Devices & Services** as usual.
+launches a local Home Assistant instance with `custom_components/` on the Python path, so `ecowitt_modbus` loads as if it had been installed normally. Add it via **Settings -> Devices & Services** as usual.
 
 ## Before opening a pull request
 
@@ -32,4 +32,6 @@ scripts/lint
 
 formats and lints the codebase with Ruff. CI also runs `hassfest` and the HACS repository validator (`.github/workflows/validate.yml`) -- both are worth checking locally if you can.
 
-If your change touches `custom_components/ecowitt_ws90/vendor/ecowitt_ws90_modbus/`, please make the equivalent change in [`ecowitt-ws90-modbus`](https://github.com/iainchesworth/ecowitt-ws90-modbus) first and then re-vendor it here, rather than letting the two drift apart.
+Anything to do with register maps, decoding, or device behaviour belongs in the [`ecowitt-modbus`](https://github.com/iainchesworth/ecowitt-modbus) device library rather than here -- this repository holds only the Home Assistant plumbing. Change the library first, release it, then bump the pin in `manifest.json`.
+
+The integration source here is kept byte-identical to the copy proposed for `home-assistant/core` ([#181083](https://github.com/home-assistant/core/pull/181083)), so that the two cannot drift while that review is open. If you change a `.py` file here, make the same change there.

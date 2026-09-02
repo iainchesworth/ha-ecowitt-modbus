@@ -1,5 +1,5 @@
 {
-    "name": "iainchesworth/ha-ecowitt-ws90",
+    "name": "iainchesworth/ha-ecowitt-modbus",
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "postCreateCommand": "scripts/setup",
     "forwardPorts": [

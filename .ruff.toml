@@ -2,11 +2,6 @@
 
 target-version = "py314"
 
-# Vendored third-party code (see custom_components/ecowitt_ws90/vendor/): kept
-# as an unmodified copy of https://github.com/iainchesworth/ecowitt-ws90-modbus
-# so it stays mechanically re-vendorable, not reformatted to this repo's style.
-extend-exclude = ["custom_components/ecowitt_ws90/vendor"]
-
 [lint]
 select = [
     "ALL",
@@ -18,10 +13,35 @@ ignore = [
     "D212", # multi-line-summary-first-line (incompatible with formatter)
     "COM812", # incompatible with formatter
     "ISC001", # incompatible with formatter
+
+    # The integration source in this repository is kept byte-identical to the
+    # copy proposed for home-assistant/core, so the rules below are disabled
+    # where they contradict how core is written. Enforcing them here would
+    # mean the two copies could not stay the same file.
+    "ARG001", # Home Assistant's platform setup signatures pass `hass` whether or not it is used
+    "CPY001", # core carries no per-file copyright headers
+    "S101", # core uses assert to narrow types for mypy
+    "TC001", # core imports first-party names normally, not under TYPE_CHECKING
+    "TC002", # ... the same for third-party names
+    "TC003", # ... and for standard-library names
 ]
 
 [lint.flake8-pytest-style]
 fixture-parentheses = false
+
+# Matches core, so a file moved between the two repositories sorts the same.
+[lint.isort]
+force-sort-within-sections = true
+known-first-party = ["homeassistant"]
+# The device library is a PyPI dependency, but shares its name with the local
+# package directory (custom_components/ecowitt_modbus), which is enough for it
+# to be taken for first-party code here and sorted into the wrong section.
+known-third-party = ["ecowitt_modbus"]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[lint.pydocstyle]
+convention = "google"
 
 [lint.pyupgrade]
 keep-runtime-typing = true
