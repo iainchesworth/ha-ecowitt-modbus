@@ -8,6 +8,6 @@
   "integration_type": "device",
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/iainchesworth/ha-ecowitt-modbus/issues",
-  "requirements": ["ecowitt-modbus==0.2.0"],
-  "version": "0.2.0"
+  "requirements": ["ecowitt-modbus==0.3.0"],
+  "version": "0.3.0"
 }

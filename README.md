@@ -9,10 +9,12 @@ This is a community integration built on Home Assistant's shared Modbus connecti
 
 ## Supported devices
 
-| Device | Default address | Description |
-| :----- | :-------------- | :---------- |
-| WS90 | `0x90` (144) | All-in-one weather sensor array with no moving parts |
-| WN69LP | `0x24` (36) | Wired 7-in-1 sensor array with a mechanical anemometer and tipping-bucket rain gauge |
+| Device | Wireless equivalent | Default address | Description |
+| :----- | :------------------ | :-------------- | :---------- |
+| WN90LP | WS90 | `0x90` (144) | All-in-one weather sensor array with no moving parts |
+| WN69LP | WS69 | `0x24` (36) | 7-in-1 sensor array with a mechanical anemometer and tipping-bucket rain gauge |
+
+Each `LP` model is the wired version of the wireless sensor beside it -- the same measurements, with the solar panel replaced by an RS-485 connection. If you are looking for the **WS90**, the WN90LP is the one that speaks Modbus; Ecowitt originally published its Modbus specification under the WS90 name and has since renamed the document, leaving the register map unchanged.
 
 These are the wired, RS-485 members of the Ecowitt range. The wireless sensors, and the gateways they report to, do not speak Modbus -- use Home Assistant's built-in [Ecowitt](https://www.home-assistant.io/integrations/ecowitt/) integration for those.
 
@@ -39,7 +41,7 @@ Configuration is done entirely through the UI. You are asked for the model first
 
 | Field | Description |
 | --- | --- |
-| Model | The model printed on the sensor, `WS90` or `WN69LP`. |
+| Model | The model printed on the sensor, `WN90LP` or `WN69LP`. |
 | Host | The hostname or IP address of the gateway the sensor is connected to. |
 | Port | The gateway's Modbus TCP port (usually 502). |
 | Device address | The sensor's Modbus device address. Defaults to the factory setting for the selected model. |
@@ -50,7 +52,7 @@ During setup the integration reads the sensor and checks the readings are consis
 
 Both models report light, UV index, temperature, humidity, wind speed, gust speed, wind direction, rainfall, and absolute pressure.
 
-The **WS90** adds a rain counter: the same cumulative total as rainfall, at 0.01mm instead of 0.1mm resolution. Disabled by default, since it duplicates a sensor that is already there.
+The **WN90LP** adds a rain counter: the same cumulative total as rainfall, at 0.01mm instead of 0.1mm resolution. Disabled by default, since it duplicates a sensor that is already there.
 
 The **WN69LP** adds battery voltage, supply voltage, and a second "recent rainfall" total. Supply voltage and recent rainfall are disabled by default -- the latter because the specification does not define what period it covers.
 
@@ -61,7 +63,7 @@ The **WN69LP has no model or serial-number register**. Two things follow from th
 - Setup cannot positively confirm the model. It checks the readings fall within the ranges a weather sensor can physically produce, which rules out most unrelated devices, but it cannot distinguish a WN69LP from another device whose registers happen to decode plausibly at the same addresses.
 - A WN69LP is identified by where it answers, not by what it is. A different WN69LP at the same address is indistinguishable, and its readings would be published under the original sensor's entities. Moving one to a new address is a reconfiguration, and the integration has to be told rather than working it out.
 
-The **WS90** reports both a fixed device code and a device ID, so neither limitation applies to it: its entry is keyed on that ID and re-checks it on every poll.
+The **WN90LP** reports both a fixed device code and a device ID, so neither limitation applies to it: its entry is keyed on that ID and re-checks it on every poll.
 
 Neither model's automatic reporting mode is used (this integration polls), and neither model's write commands -- rainfall reset, software reset -- are exposed as actions.
 
