@@ -50,7 +50,7 @@ The device and config-flow icon/logo (`custom_components/ecowitt_ws90/brand/`) a
 
 ## Requirements
 
-- Home Assistant 2026.9.0 or newer (or the current `dev`/beta build until that release ships stable) -- earlier releases don't have the shared Modbus connection API this integration depends on.
+- Home Assistant 2026.9.0b0 or newer -- earlier releases don't have the shared Modbus connection API this integration depends on.
 - A WS90 reachable over Modbus RTU-over-TCP (or native Modbus TCP), typically through an RS485-to-Ethernet gateway.
 
 ## Development
